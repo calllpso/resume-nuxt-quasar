@@ -1,0 +1,37 @@
+{
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json",
+  // "include": [
+  // "~/types/index.d.ts",
+  // ]
+
+  
+  // "compilerOptions": {
+  //   "target": "esnext",
+  //   "module": "esnext",
+  //   "strict": true,
+  //   "jsx": "preserve",
+  //   "importHelpers": true,
+  //   "moduleResolution": "node",
+  //   "experimentalDecorators": true,
+  //   "allowSyntheticDefaultImports": true,
+  //   "sourceMap": true,
+  //   "baseUrl": ".",
+  //   "types": [
+  //     "@nuxt/types",
+  //     "@nuxtjs/axios",
+  //     "@types/node"
+  //   ],
+  //   "paths": {
+  //     "@/*": ["./*"]
+  //   },
+  //   "lib": ["dom", "esnext"]
+  // },
+  // "exclude": [
+  //   "node_modules",
+  //   ".nuxt",
+  //   "dist"
+  // ]
+  
+  
+}
