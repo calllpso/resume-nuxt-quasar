@@ -1,20 +1,24 @@
 <script setup lang="ts">
 
-const candidate: Ref<Card.User> = defineModel('candidate')
-const inputsExperience: Ref<Card.Experience[]> = defineModel('inputsExperience')
-const inputsEducation: Ref<Card.Education[]> = defineModel('inputsEducation')
+const candidate: Ref<types.Card.User | undefined> = defineModel('candidate')
+const inputsExperience: Ref<types.Card.Experience[] | undefined> = defineModel('inputsExperience')
+const inputsEducation: Ref<types.Card.Education[] | undefined> = defineModel('inputsEducation')
 
 
 
 
-const imgSrc: Ref<string | null> = computed(()=>
-    !!candidate.value.yourPhoto ? URL.createObjectURL(candidate.value.yourPhoto) : null
+const imgSrc: Ref<string | null> = computed(()=>{
+    if(!!candidate.value){
+        return !!candidate.value.yourPhoto ? URL.createObjectURL(candidate.value.yourPhoto) : null
+    }
+    else return null
+}
 )
 
 </script>
 
 <template>    
-<q-card >
+<q-card v-if="candidate">
     <div class="row bg-cyan-1 q-pl-md q-pt-md" >
         <div class="col-12">
             <header class="header">
@@ -53,18 +57,21 @@ const imgSrc: Ref<string | null> = computed(()=>
 
                     <div class="text-h6">Experience</div>
                     <q-separator/>
+
                     <div v-for="item in inputsExperience" class="row">  
                         <template v-for="key in Object.keys(item)" :key="key">
                             <div class="col-3">
                             {{ key}}
                         </div>
                         <div class="col-9 ">
-                            {{ item[key] }}
+                            <template>
+                                {{ item[key] }}
+                            </template>
                         </div>
                         
                     </template>
                     <q-separator/>
-                </div>
+                    </div>
                 
             </q-card-section>
             </q-card>

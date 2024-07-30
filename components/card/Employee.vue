@@ -1,14 +1,14 @@
 <script setup lang="ts">
 
 const ddapi = new api.Dadata()
-const candidate: Ref<Card.User> = ref(fillCard.user());
+const candidate: Ref<types.Card.User> = ref(fill.candidate.user());
 
-const inputsExperience: Ref<Card.Experience[]> = ref([
-  fillCard.experience()
+const inputsExperience: Ref<types.Card.Experience[]> = ref([
+  fill.candidate.experience()
 ])
 
-const inputsEducation: Ref<Card.Education[]> = ref([
-  fillCard.education()
+const inputsEducation: Ref<types.Card.Education[]> = ref([
+  fill.candidate.education()
 ])
 
 const phoneRules = [
@@ -20,10 +20,10 @@ const phoneRules = [
 type CardType = 'experience' | 'education';
 function addItem(type: CardType) {
   if (type === 'experience') {
-    inputsExperience.value.push(fillCard.experience());
+    inputsExperience.value.push(fill.candidate.experience());
   } 
   else if (type === 'education') {
-    inputsEducation.value.push(fillCard.education());
+    inputsEducation.value.push(fill.candidate.education());
   }
 }
 

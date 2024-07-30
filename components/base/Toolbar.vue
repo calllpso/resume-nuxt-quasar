@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const items: Base.Sidebar[] = [
+
+const items: types.Base.Sidebar[] = [
     {
         name: "Nuxt",
         href: "https://nuxt.com/",

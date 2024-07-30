@@ -1,30 +1,30 @@
 export class Dadata {
-  private token = null
-  private headers = {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-    Authorization: null,
-  }
+  private token = ''
+
+  private headers: Headers = new Headers();
   constructor() {
     this.token = useTokenStore().dadata
-    this.headers.Authorization = this.token
+
+    this.headers.set('Authorization', this.token)
+    this.headers.set('Accept', 'application/json')
+    this.headers.set('Content-Type', 'application/json')
   }
 
   public POST = {
     location: async (searchStr: string) => {
       {
-        let result: Dadata.DadataResponse<Dadata.Address> = await $fetch('http://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', {
+        let result: types.Dadata.DadataResponse<types.Dadata.Address> = await $fetch('http://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', {
           method: 'POST',
           headers: this.headers,
           body: JSON.stringify({ query: searchStr }),
         })
-        return result.suggestions.map((suggestion: Dadata.Suggestion<Dadata.Address>) =>
+        return result.suggestions.map((suggestion: types.Dadata.Suggestion<types.Dadata.Address>) =>
           suggestion.value,
         );
       }
     },
     city: async (searchStr: string) => {
-      let result: Dadata.DadataResponse<Dadata.Address> = await $fetch('http://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', {
+      let result: types.Dadata.DadataResponse<types.Dadata.Address> = await $fetch('http://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', {
         method: 'POST',
         headers: this.headers,
         body: JSON.stringify({
@@ -33,13 +33,13 @@ export class Dadata {
           to_bound: { value: "settlement" }
         }),
       })
-      return result.suggestions.map((suggestion: Dadata.Suggestion<Dadata.Address>) =>
+      return result.suggestions.map((suggestion: types.Dadata.Suggestion<types.Dadata.Address>) =>
         !!suggestion.data.city ? suggestion.data.city_with_type : suggestion.data.settlement_with_type
         ,
       );
     },
     organization: async (searchStr: string) => {
-      let result: Dadata.DadataResponse<Dadata.Party> = await $fetch('http://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party', {
+      let result: types.Dadata.DadataResponse<types.Dadata.Party> = await $fetch('http://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party', {
         method: 'POST',
         headers: this.headers,
         body: JSON.stringify({
@@ -48,7 +48,7 @@ export class Dadata {
           to_bound: { value: "settlement" }
         }),
       })
-      return result.suggestions.map((suggestion: Dadata.Suggestion<Dadata.Party>) =>
+      return result.suggestions.map((suggestion: types.Dadata.Suggestion<types.Dadata.Party>) =>
         suggestion.value
       );
     }

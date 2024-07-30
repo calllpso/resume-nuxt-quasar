@@ -1,13 +1,12 @@
 
-<script setup lang="ts" >
-    // const model = ref(null)
-    
+<script setup lang="ts" >    
     const file: Ref<any> = defineModel('file')
 
     const fileRules = [
-    (val) => val.size < 9200000 || 'file is too large',
-    (val) => val.size > 30000 || 'file is too small',
-    (val) => val.type == 'image/jpeg' || '.jpg, .jpeg, .jfif, .pjpeg, .pjp'
+    (val:any) => val != null ,    
+    (val:File) => val.size < 9200000 || 'file is too large',
+    (val:File) => val.size > 30000 || 'file is too small',
+    (val:File) => val.type == 'image/jpeg' || '.jpg, .jpeg, .jfif, .pjpeg, .pjp'
   ];
 </script>
 

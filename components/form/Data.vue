@@ -1,8 +1,5 @@
 <script setup lang="ts">
-
-// const date = ref(null)
-
-const vDate: Ref<string> = defineModel('vDate')
+const vDate: Ref<string | undefined> = defineModel('vDate')
 
 </script>
 

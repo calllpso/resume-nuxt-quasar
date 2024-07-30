@@ -5,14 +5,10 @@ const props = defineProps({
     type: Function,
     required: true
   },
-  // filterFn: {
-  //   type: Function,
-  //   required: false
-  // }
 })
 
 const options: Ref<string[]> = ref([])
-const vSearchStr: Ref<string> = defineModel('vSearchStr')
+const vSearchStr: Ref<string | undefined> = defineModel('vSearchStr')
 
 async function setModel (val: string) {
   vSearchStr.value = val
@@ -21,17 +17,16 @@ async function setModel (val: string) {
 
 
 function checkAndClear() {
-  if (!options.value.includes(vSearchStr.value)) {
-    vSearchStr.value = null;
+  if(!!vSearchStr.value){
+    if (!options.value.includes(vSearchStr.value)) {
+      vSearchStr.value = '';
+    }
   }
 }
 </script>
 
 <template>
-
-
     <q-select
-      :model-value="vSearchStr"
       v-model="vSearchStr"
       :options="options"
       @input-value="setModel"

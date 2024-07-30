@@ -25,3 +25,4 @@ logs
 
 #hide pinia tokens
 plugins/pinia/tokenStore.ts
+.vscode
